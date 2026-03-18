@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>PPF Плёнки</title>
+<title>Keep1R Витрина</title>
 <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
@@ -11,7 +11,7 @@
   * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
   body {
     font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
-    background: #0A0A0C;
+    background: #0D0B14;
     color: #F0EDE6;
     min-height: 100vh;
     max-width: 430px;
@@ -19,15 +19,15 @@
     overflow-x: hidden;
   }
   :root {
-    --gold: #C9A84C;
-    --gold-light: #E8C97A;
-    --gold-dim: rgba(201,168,76,0.12);
-    --gold-border: rgba(201,168,76,0.3);
-    --surface: #111115;
-    --surface2: #18181E;
-    --surface3: #222228;
+    --purple: #7C3AED;
+    --purple-light: #A78BFA;
+    --purple-dim: rgba(124,58,237,0.12);
+    --purple-border: rgba(124,58,237,0.35);
+    --surface: #13101E;
+    --surface2: #1C1729;
+    --surface3: #261F38;
     --text: #F0EDE6;
-    --text2: #9B9890;
+    --text2: #9B94B0;
     --border: rgba(255,255,255,0.07);
     --radius: 14px;
     --radius-sm: 10px;
@@ -37,161 +37,131 @@
 
   .header {
     position: sticky; top: 0; z-index: 100;
-    background: rgba(10,10,12,0.92);
+    background: rgba(13,11,20,0.93);
     backdrop-filter: blur(20px);
     border-bottom: 1px solid var(--border);
-    padding: 14px 16px 12px;
+    padding: 13px 16px 11px;
     display: flex; align-items: center; justify-content: space-between;
   }
-  .logo { font-size: 18px; font-weight: 700; }
-  .logo span { color: var(--gold); }
+  .logo { display: flex; align-items: center; gap: 8px; }
+  .logo-text { font-size: 15px; font-weight: 800; letter-spacing: 0.5px; color: var(--text); text-transform: uppercase; }
+  .logo-text span { color: var(--purple-light); }
+  .logo-sub { font-size: 10px; font-weight: 600; color: var(--text2); text-transform: uppercase; letter-spacing: 1px; border-left: 1px solid var(--border); padding-left: 8px; }
   .cart-btn {
-    background: var(--gold-dim); border: 1px solid var(--gold-border);
+    background: var(--purple-dim); border: 1px solid var(--purple-border);
     border-radius: 50px; padding: 8px 14px;
     display: flex; align-items: center; gap: 7px;
-    color: var(--gold-light); font-size: 14px; font-weight: 500;
-    transition: all 0.2s;
+    color: var(--purple-light); font-size: 14px; font-weight: 500; transition: all 0.2s;
   }
   .cart-btn:active { transform: scale(0.97); }
-  .cart-badge {
-    background: var(--gold); color: #0A0A0C;
-    border-radius: 50px; font-size: 11px; font-weight: 700;
-    padding: 1px 6px; min-width: 18px; text-align: center;
-  }
+  .cart-badge { background: var(--purple); color: #fff; border-radius: 50px; font-size: 11px; font-weight: 700; padding: 1px 6px; min-width: 18px; text-align: center; }
 
-  .hero { padding: 20px 16px 8px; }
-  .hero h1 { font-size: 22px; font-weight: 700; line-height: 1.2; margin-bottom: 6px; }
-  .hero h1 span { color: var(--gold); }
+  .hero { padding: 18px 16px 10px; border-bottom: 1px solid var(--border); }
+  .hero-label { font-size: 10px; font-weight: 700; color: var(--purple-light); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px; }
+  .hero h1 { font-size: 24px; font-weight: 900; line-height: 1.1; text-transform: uppercase; letter-spacing: -0.5px; margin-bottom: 6px; }
   .hero p { font-size: 13px; color: var(--text2); line-height: 1.5; }
 
-  .tabs-wrap { padding: 14px 0 4px; overflow-x: auto; scrollbar-width: none; }
+  .tabs-wrap { padding: 12px 0 0; overflow-x: auto; scrollbar-width: none; }
   .tabs-wrap::-webkit-scrollbar { display: none; }
-  .tabs { display: flex; gap: 8px; padding: 0 16px; min-width: max-content; }
-  .tab {
-    background: var(--surface2); border: 1px solid var(--border);
-    border-radius: 50px; padding: 8px 16px;
-    font-size: 13px; font-weight: 500; color: var(--text2);
-    transition: all 0.2s; white-space: nowrap;
-  }
-  .tab.active { background: var(--gold-dim); border-color: var(--gold-border); color: var(--gold-light); }
+  .tabs { display: flex; gap: 6px; padding: 0 16px 12px; min-width: max-content; border-bottom: 1px solid var(--border); }
+  .tab { background: var(--surface2); border: 1px solid var(--border); border-radius: 6px; padding: 7px 14px; font-size: 12px; font-weight: 700; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; white-space: nowrap; }
+  .tab.active { background: var(--purple-dim); border-color: var(--purple-border); color: var(--purple-light); }
 
-  .products { padding: 12px 16px 110px; display: flex; flex-direction: column; gap: 12px; }
+  .products { padding: 12px 16px 110px; display: flex; flex-direction: column; gap: 10px; }
 
-  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-  .card-img {
-    width: 100%; height: 120px; background: var(--surface2);
-    display: flex; align-items: center; justify-content: center;
-    font-size: 40px; position: relative;
-  }
-  .badge {
-    position: absolute; top: 10px; left: 10px;
-    background: rgba(10,10,12,0.8); border: 1px solid var(--border);
-    border-radius: 6px; font-size: 11px; font-weight: 600;
-    color: var(--gold-light); padding: 3px 8px;
-    text-transform: uppercase; letter-spacing: 0.5px;
-  }
-  .card-body { padding: 14px; }
-  .card-name { font-size: 16px; font-weight: 600; margin-bottom: 4px; }
-  .card-desc { font-size: 13px; color: var(--text2); line-height: 1.4; margin-bottom: 10px; }
-  .specs { display: flex; gap: 6px; flex-wrap: wrap; margin-bottom: 12px; }
-  .spec { background: var(--surface3); border-radius: 6px; font-size: 11px; color: var(--text2); padding: 4px 9px; }
-  .card-footer { display: flex; align-items: center; justify-content: space-between; }
-  .price { font-size: 18px; font-weight: 700; color: var(--gold); }
-  .price-unit { font-size: 13px; font-weight: 400; color: var(--text2); }
+  .card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; position: relative; }
+  .card.bestseller { border-color: var(--purple-border); }
+  .bestseller-ribbon { position: absolute; top: 12px; right: 12px; background: var(--purple); color: #fff; font-size: 9px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; border-radius: 4px; padding: 3px 7px; }
+
+  .card-head { display: flex; gap: 12px; padding: 14px 14px 0; align-items: flex-start; }
+  .card-emoji { width: 48px; height: 48px; flex-shrink: 0; background: var(--surface2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 24px; border: 1px solid var(--border); }
+  .card-title-block { flex: 1; min-width: 0; padding-right: 70px; }
+  .card-name { font-size: 16px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.3px; line-height: 1.1; margin-bottom: 4px; color: var(--text); }
+  .card-specs-inline { font-size: 11px; color: var(--text2); line-height: 1.6; }
+  .card-desc { font-size: 13px; color: var(--text2); line-height: 1.45; padding: 10px 14px 0; }
+
+  .pricing { display: grid; grid-template-columns: 1fr 1fr 1fr; margin: 12px 14px 0; border: 1px solid var(--border); border-radius: var(--radius-sm); overflow: hidden; }
+  .price-col { padding: 10px 8px; text-align: center; }
+  .price-col:not(:last-child) { border-right: 1px solid var(--border); }
+  .price-col.active { background: var(--purple-dim); }
+  .price-label { font-size: 10px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; font-weight: 600; }
+  .price-val { font-size: 15px; font-weight: 800; color: var(--text); }
+  .price-val.highlight { color: var(--purple-light); }
+  .price-note { font-size: 9px; color: var(--text2); margin-top: 2px; }
+
+  .card-footer { display: flex; align-items: center; justify-content: space-between; padding: 12px 14px 14px; }
+  .warranty { font-size: 11px; color: var(--text2); display: flex; align-items: center; gap: 4px; }
   .out-of-stock { font-size: 13px; color: var(--text2); }
 
-  .add-btn {
-    background: var(--gold); color: #0A0A0C;
-    border-radius: 10px; padding: 10px 18px;
-    font-size: 14px; font-weight: 700; transition: all 0.2s;
-  }
-  .add-btn:active { transform: scale(0.96); }
+  .buy-btn { background: var(--purple); color: #fff; border-radius: 8px; padding: 9px 16px; font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.3px; transition: all 0.2s; }
+  .buy-btn:active { transform: scale(0.96); background: #6D28D9; }
 
-  .qty { display: flex; align-items: center; gap: 10px; }
-  .qty-btn {
-    width: 34px; height: 34px; border-radius: 8px;
-    background: var(--surface3); color: var(--text);
-    font-size: 18px; display: flex; align-items: center; justify-content: center;
-    transition: all 0.15s;
-  }
+  .qty { display: flex; align-items: center; gap: 8px; }
+  .qty-btn { width: 32px; height: 32px; border-radius: 7px; background: var(--surface3); color: var(--text); font-size: 18px; display: flex; align-items: center; justify-content: center; transition: all 0.15s; }
   .qty-btn:active { transform: scale(0.9); }
-  .qty-num { font-size: 16px; font-weight: 600; min-width: 20px; text-align: center; color: var(--gold); }
+  .qty-num { font-size: 15px; font-weight: 700; min-width: 18px; text-align: center; color: var(--purple-light); }
 
-  /* Cart sheet */
-  .overlay {
-    position: fixed; inset: 0; background: rgba(0,0,0,0.65);
-    z-index: 200; display: flex; flex-direction: column; justify-content: flex-end;
-  }
-  .sheet {
-    background: var(--surface); border-radius: 20px 20px 0 0;
-    border-top: 1px solid var(--border);
-    max-height: 88vh; display: flex; flex-direction: column;
-    animation: slideUp 0.25s cubic-bezier(0.34,1.4,0.64,1);
-  }
+  .overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.7); z-index: 200; display: flex; flex-direction: column; justify-content: flex-end; }
+  .sheet { background: var(--surface); border-radius: 20px 20px 0 0; border-top: 1px solid var(--purple-border); max-height: 88vh; display: flex; flex-direction: column; animation: slideUp 0.25s cubic-bezier(0.34,1.4,0.64,1); }
   @keyframes slideUp { from { transform: translateY(100%) } to { transform: translateY(0) } }
   .handle { width: 40px; height: 4px; background: var(--surface3); border-radius: 2px; margin: 12px auto 0; flex-shrink: 0; }
   .sheet-head { padding: 14px 16px 12px; border-bottom: 1px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-shrink: 0; }
-  .sheet-title { font-size: 18px; font-weight: 700; }
+  .sheet-title { font-size: 16px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; }
   .close { background: var(--surface3); color: var(--text2); border-radius: 50%; width: 30px; height: 30px; font-size: 16px; display: flex; align-items: center; justify-content: center; }
   .sheet-body { flex: 1; overflow-y: auto; padding: 4px 16px; }
   .sheet-foot { padding: 14px 16px 28px; border-top: 1px solid var(--border); flex-shrink: 0; }
 
   .cart-row { display: flex; gap: 12px; align-items: center; padding: 12px 0; border-bottom: 1px solid var(--border); }
-  .cart-icon { width: 46px; height: 46px; background: var(--surface2); border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .cart-icon { width: 44px; height: 44px; background: var(--surface2); border-radius: 9px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
   .cart-info { flex: 1; min-width: 0; }
-  .cart-name { font-size: 14px; font-weight: 600; margin-bottom: 2px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .cart-sub { font-size: 13px; color: var(--text2); }
-  .total-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0 16px; }
-  .total-label { font-size: 14px; color: var(--text2); }
-  .total-sum { font-size: 22px; font-weight: 700; color: var(--gold); }
+  .cart-name { font-size: 13px; font-weight: 700; text-transform: uppercase; margin-bottom: 3px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .cart-sub { font-size: 12px; color: var(--text2); }
+  .unit-tag { display: inline-block; background: var(--surface3); border-radius: 4px; font-size: 10px; color: var(--text2); padding: 2px 6px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3px; margin-left: 4px; }
 
-  .pay-btn {
-    width: 100%; background: var(--gold); color: #0A0A0C;
-    border-radius: var(--radius); padding: 16px;
-    font-size: 16px; font-weight: 700; transition: all 0.2s;
-    display: flex; align-items: center; justify-content: center; gap: 8px;
-  }
+  .total-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0 16px; }
+  .total-label { font-size: 13px; color: var(--text2); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .total-sum { font-size: 22px; font-weight: 800; color: var(--purple-light); }
+
+  .pay-btn { width: 100%; background: var(--purple); color: #fff; border-radius: var(--radius); padding: 16px; font-size: 15px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.5px; transition: all 0.2s; display: flex; align-items: center; justify-content: center; gap: 8px; }
   .pay-btn:active { transform: scale(0.98); }
   .pay-btn:disabled { opacity: 0.5; cursor: default; }
-  .pay-btn .sbp { font-size: 13px; opacity: 0.75; font-weight: 500; }
+  .sbp { font-size: 12px; opacity: 0.7; font-weight: 600; text-transform: none; letter-spacing: 0; }
 
   .empty { text-align: center; padding: 48px 0; color: var(--text2); }
   .empty-icon { font-size: 40px; margin-bottom: 12px; }
 
-  .loading { display: flex; flex-direction: column; align-items: center; justify-content: center; height: 200px; gap: 12px; color: var(--text2); }
-  .spinner { width: 28px; height: 28px; border: 2px solid var(--border); border-top-color: var(--gold); border-radius: 50%; animation: spin 0.8s linear infinite; }
+  .spinner { width: 18px; height: 18px; border: 2px solid rgba(255,255,255,0.3); border-top-color: #fff; border-radius: 50%; animation: spin 0.8s linear infinite; }
   @keyframes spin { to { transform: rotate(360deg) } }
 
-  /* Error toast */
-  .toast {
-    position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
-    background: var(--danger); color: white;
-    padding: 12px 20px; border-radius: 10px;
-    font-size: 14px; font-weight: 500; z-index: 999;
-    animation: fadeInUp 0.3s ease;
-  }
-  @keyframes fadeInUp { from { opacity: 0; transform: translateX(-50%) translateY(10px) } to { opacity: 1; transform: translateX(-50%) translateY(0) } }
+  .toast { position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%); background: var(--danger); color: white; padding: 12px 20px; border-radius: 10px; font-size: 14px; font-weight: 500; z-index: 999; white-space: nowrap; }
 </style>
 </head>
 <body>
 <div id="root"></div>
 <script type="text/babel">
-const { useState, useEffect, useRef } = React;
+const { useState, useRef } = React;
 
-const CATS = [
-  { id: "all", label: "Все" },
-  { id: "gloss", label: "Глянец" },
-  { id: "matte", label: "Матт" },
-  { id: "satin", label: "Сатин" },
+const PRODUCTS = [
+  { id:1, name:"Basic", category:"gloss", emoji:"🧑‍🚀", desc:"Отлично подходит для лекал на элементы интерьера. Клей цепкий, стартовая адгезия высокая, с праймером дружит", specs:"Лаковый слой: средний · Толщина: 190 мкр · Рулон 15 м", warranty:"5 лет", price_cut:3000, price_roll:45000, price_bulk:35000, in_stock:true, bestseller:false },
+  { id:2, name:"Basic Pro", category:"gloss", emoji:"🧑‍🚀", desc:"Предсказуемое поведение плёнки, клей цепкий, но без агрессии — можно работать привычным раствором. Идеальный глянец без шагрени. Сильный гидрофобный эффект", specs:"Лаковый слой: средний · Толщина: 190 мкр · Рулон 15 м", warranty:"7 лет", price_cut:3690, price_roll:55000, price_bulk:45000, in_stock:true, bestseller:true },
+  { id:3, name:"Basic Lite", category:"gloss", emoji:"🧑‍🚀", desc:"Идеальный глянец, цепкий клей, сильный гидрофоб. Аналог Basic Pro с мягким топом", specs:"Лаковый слой: мягкий · Толщина: 190 мкр · Рулон 15 м", warranty:"7 лет", price_cut:3690, price_roll:55000, price_bulk:45000, in_stock:true, bestseller:false },
+  { id:4, name:"Basic Satin", category:"satin", emoji:"🧑‍🚀", desc:"Сатин с заметным блеском, эластичная, клей не агрессивный, удобный", specs:"Лаковый слой: средний · Толщина: 190 мкр · Рулон 15 м", warranty:"5 лет", price_cut:4350, price_roll:65000, price_bulk:55000, in_stock:true, bestseller:false },
+  { id:5, name:"Flex", category:"gloss", emoji:"🧑‍🚀", desc:"Мягкая, эластичная, легко принимает форму. Лёгкая шагрень маскирует косячки ЛКП", specs:"Лаковый слой: мягкий · Толщина: 190 мкр · Рулон 15 м", warranty:"7 лет", price_cut:4190, price_roll:62000, price_bulk:52000, in_stock:true, bestseller:false },
+  { id:6, name:"Flex Matte", category:"matte", emoji:"🧑‍🚀", desc:"Эластичная, простая в установке, выглядит дорого", specs:"Лаковый слой: мягкий · Толщина: 190 мкр · Рулон 15 м", warranty:"7 лет", price_cut:4350, price_roll:65000, price_bulk:55000, in_stock:true, bestseller:false },
+  { id:7, name:"Flex Satin", category:"satin", emoji:"🧑‍🚀", desc:"Простая в установке, эластичная, клей понятный. Не сильно блестит", specs:"Лаковый слой: мягкий · Толщина: 190 мкр · Рулон 15 м", warranty:"7 лет", price_cut:4490, price_roll:67000, price_bulk:57000, in_stock:true, bestseller:false },
+  { id:8, name:"Smoke 30/50/70", category:"smoke", emoji:"🧑‍🚀", desc:"50 — фиолетовый оттенок, 70 — серый. Тонирующий полиуретан для оптики", specs:"Лаковый слой: средний · Толщина: 215 мкр · Рулон 15 м", warranty:"5 лет", price_cut:5500, price_roll:80000, price_bulk:70000, in_stock:true, bestseller:false },
 ];
 
-const CAT_LABELS = { gloss: "Глянец", matte: "Матт", satin: "Сатин" };
+const CATS = [
+  { id:"all", label:"Все" },
+  { id:"gloss", label:"Глянец" },
+  { id:"satin", label:"Сатин" },
+  { id:"matte", label:"Матт" },
+  { id:"smoke", label:"Smoke" },
+];
 
-function genOrderId() {
-  return "ORD-" + Date.now().toString(36).toUpperCase();
-}
+const fmt = n => n.toLocaleString("ru-RU");
 
-// ── Qty Control ──────────────────────────────
 function Qty({ qty, onInc, onDec }) {
   return (
     <div className="qty">
@@ -202,45 +172,54 @@ function Qty({ qty, onInc, onDec }) {
   );
 }
 
-// ── Product Card ─────────────────────────────
 function ProductCard({ p, cartItem, onAdd, onInc, onDec }) {
   return (
-    <div className="card">
-      <div className="card-img">
-        <span>{p.emoji}</span>
-        <div className="badge">{CAT_LABELS[p.category] || p.category}</div>
+    <div className={"card" + (p.bestseller ? " bestseller" : "")}>
+      {p.bestseller && <div className="bestseller-ribbon">Хит продаж</div>}
+      <div className="card-head">
+        <div className="card-emoji">{p.emoji}</div>
+        <div className="card-title-block">
+          <div className="card-name">{p.name}</div>
+          <div className="card-specs-inline">{p.specs}</div>
+        </div>
       </div>
-      <div className="card-body">
-        <div className="card-name">{p.name}</div>
-        <div className="card-desc">{p.desc}</div>
-        <div className="specs">
-          {p.specs.map((s, i) => <span key={i} className="spec">{s}</span>)}
+      <div className="card-desc">{p.desc}</div>
+      <div className="pricing">
+        <div className="price-col">
+          <div className="price-label">Отрез</div>
+          <div className="price-val">{fmt(p.price_cut)} ₽</div>
+          <div className="price-note">за пог. м</div>
         </div>
-        <div className="card-footer">
-          <div>
-            <span className="price">{p.price.toLocaleString("ru-RU")} ₽</span>
-            <span className="price-unit"> / {p.unit}</span>
-          </div>
-          {!p.in_stock ? (
-            <span className="out-of-stock">Нет в наличии</span>
-          ) : cartItem ? (
-            <Qty qty={cartItem.qty} onInc={onInc} onDec={onDec} />
-          ) : (
-            <button className="add-btn" onClick={onAdd}>В корзину</button>
-          )}
+        <div className="price-col active">
+          <div className="price-label">Рулон</div>
+          <div className="price-val highlight">{fmt(p.price_roll)} ₽</div>
+          <div className="price-note">15 м</div>
         </div>
+        <div className="price-col">
+          <div className="price-label">От 10 шт</div>
+          <div className="price-val">{fmt(p.price_bulk)} ₽</div>
+          <div className="price-note">за рулон</div>
+        </div>
+      </div>
+      <div className="card-footer">
+        <div className="warranty">🛡️ Гарантия {p.warranty}</div>
+        {!p.in_stock ? (
+          <span className="out-of-stock">Нет в наличии</span>
+        ) : cartItem ? (
+          <Qty qty={cartItem.qty} onInc={onInc} onDec={onDec} />
+        ) : (
+          <button className="buy-btn" onClick={onAdd}>В корзину</button>
+        )}
       </div>
     </div>
   );
 }
 
-// ── Cart Sheet ───────────────────────────────
-function CartSheet({ cart, products, onClose, onInc, onDec, onPay, paying }) {
+function CartSheet({ cart, onClose, onInc, onDec, onPay, paying }) {
   const total = cart.reduce((s, i) => {
-    const p = products.find(x => x.id === i.id);
-    return s + (p ? p.price * i.qty : 0);
+    const p = PRODUCTS.find(x => x.id === i.id);
+    return s + (p ? p.price_roll * i.qty : 0);
   }, 0);
-  const empty = cart.length === 0;
 
   return (
     <div className="overlay" onClick={e => e.target === e.currentTarget && onClose()}>
@@ -251,21 +230,18 @@ function CartSheet({ cart, products, onClose, onInc, onDec, onPay, paying }) {
           <button className="close" onClick={onClose}>✕</button>
         </div>
         <div className="sheet-body">
-          {empty ? (
-            <div className="empty">
-              <div className="empty-icon">🛒</div>
-              <div>Корзина пуста</div>
-            </div>
+          {cart.length === 0 ? (
+            <div className="empty"><div className="empty-icon">🛒</div><div>Корзина пуста</div></div>
           ) : (
             cart.map(item => {
-              const p = products.find(x => x.id === item.id);
+              const p = PRODUCTS.find(x => x.id === item.id);
               if (!p) return null;
               return (
                 <div key={item.id} className="cart-row">
                   <div className="cart-icon">{p.emoji}</div>
                   <div className="cart-info">
-                    <div className="cart-name">{p.name}</div>
-                    <div className="cart-sub">{(p.price * item.qty).toLocaleString("ru-RU")} ₽</div>
+                    <div className="cart-name">{p.name}<span className="unit-tag">рулон</span></div>
+                    <div className="cart-sub">{fmt(p.price_roll * item.qty)} ₽</div>
                   </div>
                   <Qty qty={item.qty} onInc={() => onInc(item.id)} onDec={() => onDec(item.id)} />
                 </div>
@@ -273,18 +249,14 @@ function CartSheet({ cart, products, onClose, onInc, onDec, onPay, paying }) {
             })
           )}
         </div>
-        {!empty && (
+        {cart.length > 0 && (
           <div className="sheet-foot">
             <div className="total-row">
               <span className="total-label">Итого</span>
-              <span className="total-sum">{total.toLocaleString("ru-RU")} ₽</span>
+              <span className="total-sum">{fmt(total)} ₽</span>
             </div>
             <button className="pay-btn" disabled={paying} onClick={onPay}>
-              {paying ? (
-                <><div className="spinner" style={{width:18,height:18,borderTopColor:"#0A0A0C"}} /> Создаём счёт...</>
-              ) : (
-                <> Оплатить <span className="sbp">· СБП</span></>
-              )}
+              {paying ? <><div className="spinner" /> Создаём счёт...</> : <>Оплатить <span className="sbp">· СБП</span></>}
             </button>
           </div>
         )}
@@ -293,128 +265,64 @@ function CartSheet({ cart, products, onClose, onInc, onDec, onPay, paying }) {
   );
 }
 
-// ── App ──────────────────────────────────────
 function App() {
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
   const [cat, setCat] = useState("all");
   const [cart, setCart] = useState([]);
   const [cartOpen, setCartOpen] = useState(false);
   const [paying, setPaying] = useState(false);
   const [toast, setToast] = useState(null);
-  const toastTimer = useRef(null);
+  const timer = useRef(null);
 
-  useEffect(() => {
-    fetch("/api/products")
-      .then(r => r.json())
-      .then(data => { setProducts(data); setLoading(false); })
-      .catch(() => setLoading(false));
-  }, []);
-
-  const showToast = (msg) => {
-    setToast(msg);
-    clearTimeout(toastTimer.current);
-    toastTimer.current = setTimeout(() => setToast(null), 4000);
-  };
-
+  const showToast = msg => { setToast(msg); clearTimeout(timer.current); timer.current = setTimeout(() => setToast(null), 4000); };
   const cartCount = cart.reduce((s, i) => s + i.qty, 0);
-  const filtered = cat === "all" ? products : products.filter(p => p.category === cat);
-
-  const addToCart  = id => setCart(c => [...c, { id, qty: 1 }]);
-  const incQty     = id => setCart(c => c.map(i => i.id === id ? {...i, qty: i.qty + 1} : i));
-  const decQty     = id => setCart(c => {
-    const item = c.find(i => i.id === id);
-    if (item.qty <= 1) return c.filter(i => i.id !== id);
-    return c.map(i => i.id === id ? {...i, qty: i.qty - 1} : i);
-  });
+  const filtered = cat === "all" ? PRODUCTS : PRODUCTS.filter(p => p.category === cat);
+  const addToCart = id => setCart(c => [...c, { id, qty: 1 }]);
+  const incQty = id => setCart(c => c.map(i => i.id === id ? {...i, qty: i.qty + 1} : i));
+  const decQty = id => setCart(c => { const it = c.find(i => i.id === id); if (it.qty <= 1) return c.filter(i => i.id !== id); return c.map(i => i.id === id ? {...i, qty: i.qty - 1} : i); });
 
   const handlePay = async () => {
     if (paying) return;
     setPaying(true);
     try {
-      const orderId = genOrderId();
-      const items = cart.map(i => {
-        const p = products.find(x => x.id === i.id);
-        return { name: p.name, price: p.price, qty: i.qty };
-      });
-
-      const res = await fetch("/api/create-payment", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ items, orderId }),
-      });
-
+      const orderId = "K1R-" + Date.now().toString(36).toUpperCase();
+      const items = cart.map(i => { const p = PRODUCTS.find(x => x.id === i.id); return { name: p.name + " (рулон)", price: p.price_roll, qty: i.qty }; });
+      const res = await fetch("/api/create-payment", { method:"POST", headers:{"Content-Type":"application/json"}, body: JSON.stringify({ items, orderId }) });
       const data = await res.json();
-
-      if (!res.ok || !data.paymentUrl) {
-        throw new Error(data.error || "Не удалось создать счёт");
-      }
-
-      // Открываем платёжную страницу Точки
-      // В Max это откроется внутри WebView мессенджера
+      if (!res.ok || !data.paymentUrl) throw new Error(data.error || "Ошибка создания счёта");
       window.location.href = data.paymentUrl;
-
     } catch (err) {
       showToast(err.message || "Ошибка оплаты, попробуйте ещё раз");
-    } finally {
-      setPaying(false);
-    }
+    } finally { setPaying(false); }
   };
 
   return (
     <>
       <div className="header">
-        <div className="logo">PPF<span>Shop</span></div>
+        <div className="logo">
+          <div className="logo-text">Keep<span>1R</span></div>
+          <div className="logo-sub">Витрина</div>
+        </div>
         <button className="cart-btn" onClick={() => setCartOpen(true)}>
-          <span>🛒</span>
-          <span>Корзина</span>
+          <span>🛒</span><span>Корзина</span>
           {cartCount > 0 && <span className="cart-badge">{cartCount}</span>}
         </button>
       </div>
-
       <div className="hero">
-        <h1>PPF плёнки<br /><span>для вашего авто</span></h1>
-        <p>Защитные плёнки от ведущих производителей. Глянец, матт, сатин.</p>
+        <div className="hero-label">PPF плёнки · Опт и розница</div>
+        <h1>Защитные<br />плёнки</h1>
+        <p>Рулон 15 м · Глянец, сатин, матт, smoke</p>
       </div>
-
       <div className="tabs-wrap">
         <div className="tabs">
-          {CATS.map(c => (
-            <button key={c.id} className={"tab" + (cat === c.id ? " active" : "")} onClick={() => setCat(c.id)}>
-              {c.label}
-            </button>
-          ))}
+          {CATS.map(c => <button key={c.id} className={"tab" + (cat === c.id ? " active" : "")} onClick={() => setCat(c.id)}>{c.label}</button>)}
         </div>
       </div>
-
-      {loading ? (
-        <div className="loading">
-          <div className="spinner" />
-          <div>Загружаем каталог...</div>
-        </div>
-      ) : (
-        <div className="products">
-          {filtered.map(p => (
-            <ProductCard
-              key={p.id} p={p}
-              cartItem={cart.find(i => i.id === p.id)}
-              onAdd={() => addToCart(p.id)}
-              onInc={() => incQty(p.id)}
-              onDec={() => decQty(p.id)}
-            />
-          ))}
-        </div>
-      )}
-
-      {cartOpen && (
-        <CartSheet
-          cart={cart} products={products}
-          onClose={() => setCartOpen(false)}
-          onInc={incQty} onDec={decQty}
-          onPay={handlePay} paying={paying}
-        />
-      )}
-
+      <div className="products">
+        {filtered.map(p => (
+          <ProductCard key={p.id} p={p} cartItem={cart.find(i => i.id === p.id)} onAdd={() => addToCart(p.id)} onInc={() => incQty(p.id)} onDec={() => decQty(p.id)} />
+        ))}
+      </div>
+      {cartOpen && <CartSheet cart={cart} onClose={() => setCartOpen(false)} onInc={incQty} onDec={decQty} onPay={handlePay} paying={paying} />}
       {toast && <div className="toast">{toast}</div>}
     </>
   );
